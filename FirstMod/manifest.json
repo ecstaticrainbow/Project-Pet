@@ -1,0 +1,13 @@
+{
+  "Name": "FirstMod",
+  "Author": "TommyB",
+  "Version": {
+    "MajorVersion": 0,
+    "MinorVersion": 1,
+    "PatchVersion": 0,
+    "Build": null
+  },
+  "Description": "<One or two sentences about the mod>",
+  "UniqueID": "TommyB.FirstMod",
+  "EntryDll": "FirstMod.dll"
+}
