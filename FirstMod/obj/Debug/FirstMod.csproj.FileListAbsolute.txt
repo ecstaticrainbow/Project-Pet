@@ -4,3 +4,9 @@ C:\Users\tomro\source\repos\FirstMod\FirstMod\obj\Debug\FirstMod.csprojResolveAs
 C:\Users\tomro\source\repos\FirstMod\FirstMod\obj\Debug\FirstMod.csproj.CoreCompileInputs.cache
 C:\Users\tomro\source\repos\FirstMod\FirstMod\obj\Debug\FirstMod.dll
 C:\Users\tomro\source\repos\FirstMod\FirstMod\obj\Debug\FirstMod.pdb
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\bin\Debug\FirstMod.dll
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\bin\Debug\FirstMod.pdb
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\obj\Debug\FirstMod.csprojResolveAssemblyReference.cache
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\obj\Debug\FirstMod.csproj.CoreCompileInputs.cache
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\obj\Debug\FirstMod.dll
+C:\Users\tomro\Documents\GitHub\Project-Pet\FirstMod\obj\Debug\FirstMod.pdb

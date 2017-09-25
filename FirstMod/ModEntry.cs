@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StardewValley.Menus;
 using System.Collections.Generic;
+using StardewValley.Locations;
 
 namespace FirstMod
 {
@@ -28,11 +29,12 @@ namespace FirstMod
         /// <param name="helper">Provides simplified APIs for writing mods.</param>
         public override void Entry(IModHelper helper)
         {
-            
+           
+
             texture2 = helper.Content.Load<Texture2D>(@"assets\dog.xnb");
             texture = new AnimatedSprite(helper.Content.Load<Texture2D>(@"assets\Dinosaur.xnb"));
             ControlEvents.KeyPressed += this.ControlEvents_KeyPress;
-            
+            LocationEvents.CurrentLocationChanged += this.LocationEvents_LocationChanged;
             SaveEvents.AfterLoad += this.SaveEvents_AfterLoad;
         }
 
@@ -58,7 +60,15 @@ namespace FirstMod
 
             }
         }
-        
+        private void LocationEvents_LocationChanged(object sender, EventArgsCurrentLocationChanged e)
+        {
+            this.Monitor.Log(e.NewLocation.name);
+            foreach (Pet pet in Utility.getAllCharacters().OfType<Pet>().ToArray())
+            {
+                movePet(pet, e.NewLocation);
+            }
+            
+        }
 
 
         private bool IsSimilar(Color original, Color test, int redDelta, int blueDelta, int greenDelta)
@@ -73,10 +83,7 @@ namespace FirstMod
         {
             
             changeDogColour(Color.WhiteSmoke, Color.White, Color.Gray, Color.LightGray, Color.LightPink, Color.HotPink);
-            
-            
-            
-            
+
 
         }
 
@@ -139,17 +146,32 @@ namespace FirstMod
                     data[i] = newdarkcollar;
             texture2.SetData<Color>(data);
             AnimatedSprite dogsprite = new AnimatedSprite(texture2, 0, 32, 32);
-            
             //Game1.player.FarmerRenderer.draw(spriteBatch, Game1.player.FarmerSprite.CurrentAnimationFrame, Game1.player.FarmerSprite.CurrentFrame, Game1.player.FarmerSprite.SourceRect, new Vector2(xPositionOnScreen - 2 + Game1.tileSize * 2 / 3 + Game1.tileSize * 2 - Game1.tileSize / 2, (yPositionOnScreen + 75) + IClickableMenu.borderWidth - Game1.tileSize / 4 + IClickableMenu.spaceToClearTopBorder + Game1.tileSize / 2), Vector2.Zero, 0.8f, Color.White, 0f, 1f, Game1.player);
             foreach (Pet pet in Utility.getAllCharacters().OfType<Pet>().ToArray())
             {
-
-                this.Monitor.Log(pet.name.ToString());
                 pet.sprite = dogsprite;
-
             }
+            
+            
         }
 
+        public void movePet(Pet pet, GameLocation location)
+        {
+            FarmHouse homeOfFarmer = Utility.getHomeOfFarmer(Game1.player);
+            Vector2 vector2 = Vector2.Zero;
+            int num = 0;
+            for (vector2 = new Vector2((float)Game1.player.getTileX(), (float)Game1.player.getTileY()); num < 50 && (!location.isTileLocationTotallyClearAndPlaceable(vector2) || !location.isTileLocationTotallyClearAndPlaceable(vector2 + new Vector2(1f, 0.0f)) || homeOfFarmer.isTileOnWall((int)vector2.X, (int)vector2.Y)); ++num)
+                vector2 = new Vector2((float)Game1.player.getTileX(), (float)Game1.player.getTileY());
+            if (num >= 50)
+                return;
+            Game1.warpCharacter((NPC)pet, location.name, vector2, false, false);
+            
+            //Game1.getFarm().characters.Remove((NPC)pet);
+            pet.CurrentBehavior=0;
+            pet.initiateCurrentBehavior();
+            
+        }
+        
 
     }
     
