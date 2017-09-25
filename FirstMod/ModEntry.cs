@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using StardewValley.Menus;
 using System.Collections.Generic;
 
+// tom is gay
+
 namespace FirstMod
 {
     /// <summary>The mod entry point.</summary>
