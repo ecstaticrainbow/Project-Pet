@@ -12,6 +12,8 @@ using StardewValley.Menus;
 using System.Collections.Generic;
 using StardewValley.Locations;
 
+// tom is gay
+
 namespace FirstMod
 {
     /// <summary>The mod entry point.</summary>
